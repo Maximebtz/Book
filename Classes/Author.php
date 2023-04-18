@@ -11,29 +11,30 @@ class Author{
         private array $book;
 
 		//__constructor
-		public function __construct(string $name, string $surname, string $year, string $location, array $book){
+		public function __construct(string $name, string $surname, string $year, string $location){
 			
 			$this->name = $name;
 			$this->surname = $surname;
 			$this->year = $year;
         	$this->location = $location;
+
         	$this->book = [];
 			
 	}
 	
     //Methods
 
+	public function addBook(Book $book){
+		$this->book[] = $book;
+	}
 	public function getInfo(){
 			$info = "Books of " . $this . ":<br>";
 			foreach($this->book as $book){
-			$info .= "-" . $book->getTitle() ." (" . $book->getDate() . ") ". ": " . $book->getPage() . " Pages /" . $book->getPrice ."€ <br>";
+			$info .= "- " . $book->getTitle() ." (" . $book->getDate() . ") " . ": " . $book->getPage() . " Pages / " . $book->getPrice() ."€ <br>";
         }
         return $info;
 	}
 
-	public function addBook(Book $book){
-		$this->book[] = $book;
-	}
 	
     //Getters and setters
 	
@@ -93,7 +94,7 @@ class Author{
     //__toString
 
     public function __toString(){
-		return $this->name . " " . $this->surname . " (" . $this->year . ")<br>";
+		return $this->name . " " . $this->surname . " (" . $this->year . ")";
 	}
 
 }
