@@ -5,6 +5,7 @@ class Book{
     //Attibuts
 
     private string $title;
+	private string $date;
     private int $page;
     private float $price;
     private Author $author;
@@ -12,13 +13,14 @@ class Book{
 
     //__constructor
 
-    public function __constructor(string $title, int $page, float $price, Author $author){
+    public function __construct(string $title, string $date, int $page, float $price, Author $author){
 
             $this->title = $title;
+			$this->date = $date;
             $this->page = $page;
             $this->price = $price;
             $this->author = $author;
-
+			$this->author->addBook($this);
     }
 
     
@@ -30,6 +32,18 @@ class Book{
 
 	public function setTitle(string $title): self {
 		$this->title = $title;
+		return $this;
+	}
+
+
+	public function getDate()
+	{
+		return $this->date;
+	}
+
+	public function setDate($date)
+	{
+		$this->date = $date;
 		return $this;
 	}
 
@@ -65,8 +79,10 @@ class Book{
 
 
     //__toString
+	public function __toString(){
+		return  $this->title . " écrit par " . $this->author . "<br>" ;
+	}
 
-    
 }
 
 ?>
